@@ -1,0 +1,7 @@
+.pageContainer {
+  border-radius: 0.5rem;
+  padding: 1em 2em;
+  cursor: pointer;
+  background-color: var(--main-clr);
+  color: white;
+}

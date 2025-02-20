@@ -1,0 +1,21 @@
+.addVideoButton {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border: 2px solid var(--main-clr);
+  color: var(--main-clr);
+  border-radius: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  animation: downToTop 1s ease-in-out;
+}
+
+@keyframes downToTop {
+  from {
+    transform: translateY(130px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

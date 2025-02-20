@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+.container {
+  margin-top: 12rem;
+  text-align: center;
+  display: grid;
+  place-content: center;
+}
+
+.mainHeading {
+  color: var(--main-clr);
+  font-family: "Darumadrop One", sans-serif;
+}
+
+header p span {
+  color: var(--main-clr);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.pagesSection {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}

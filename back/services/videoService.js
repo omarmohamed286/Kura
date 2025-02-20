@@ -3,6 +3,12 @@ const asyncHandler = require("express-async-handler");
 const videoModel = require("../models/videoModel");
 const getVideoInfo = require("./youtubeVideoInfoService");
 
+exports.getVideoInfoByUrl = asyncHandler(async (req, res) => {
+  const { url } = req.body;
+  const { title, thumbnail, channelName } = await getVideoInfo(url);
+  res.status(201).json({ title, thumbnail, channelName });
+});
+
 exports.addVideo = asyncHandler(async (req, res) => {
   const { url } = req.body;
   const isVideoExist = await videoModel.findOne({ url });
@@ -49,7 +55,7 @@ exports.getVideos = asyncHandler(async (req, res) => {
     query = { title: { $regex: keyword.trim(), $options: "i" } };
   }
 
-  const videos = await videoModel.find(query);
+  const videos = await videoModel.find(query).skip(skip).limit(limit);
 
   res.status(200).json({ data: videos, pagination });
 });

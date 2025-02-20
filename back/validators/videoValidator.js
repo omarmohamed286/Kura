@@ -20,3 +20,14 @@ exports.deleteVideoValidator = [
     .withMessage("id should be valid mongo id"),
   validatorMW,
 ];
+
+exports.getVideoInfoByUrlValidator = [
+  check("url")
+    .notEmpty()
+    .withMessage("url is required")
+    .matches(
+      /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
+    )
+    .withMessage("URL Should Be Valid Youtube Url"),
+  validatorMW,
+];
