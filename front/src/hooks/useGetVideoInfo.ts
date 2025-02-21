@@ -11,7 +11,7 @@ const useGetVideoInfo = (url: string) => {
     retry: 0,
     queryFn: () =>
       axios
-        .post("http://localhost:3005/videos/info", {
+        .post("/videos/info", {
           url,
         })
         .then((res) => res.data),

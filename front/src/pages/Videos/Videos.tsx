@@ -1,4 +1,5 @@
 import { TextInput, Center, Loader } from "@mantine/core";
+import { Toaster } from "react-hot-toast";
 
 import { ModalComponent, VideoCard } from "@components/index";
 import { AddVideoModal } from "@components/index";
@@ -23,7 +24,7 @@ const Videos = () => {
     } else if (videos && videos.length > 0) {
       return [...videos].reverse().map((video) => {
         return (
-          <div className={videosContainer}>
+          <div className={videosContainer} key={video._id}>
             <VideoCard video={video} />
           </div>
         );
@@ -43,7 +44,7 @@ const Videos = () => {
   };
 
   return (
-    <div style={{marginInline:"1rem"}}>
+    <div style={{ marginInline: "1rem" }}>
       <button className={addVideoButton} onClick={open}>
         +
       </button>
@@ -59,6 +60,7 @@ const Videos = () => {
       <ModalComponent opened={opened} close={close}>
         <AddVideoModal closeModal={close}></AddVideoModal>
       </ModalComponent>
+      <Toaster position="top-right"></Toaster>
     </div>
   );
 };

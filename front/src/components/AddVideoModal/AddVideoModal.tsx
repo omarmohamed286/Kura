@@ -1,4 +1,5 @@
 import { Button, TextInput } from "@mantine/core";
+
 import isYoutubeUrl from "@validations/isYoutubeUrl";
 import notify from "@utils/notify";
 import useGetVideoInfo from "@hooks/useGetVideoInfo";
@@ -40,14 +41,15 @@ const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
   };
   const handleOnSubmit = async () => {
     if (url && !isUrlError) {
-      const promise = await addVideo();
-      if (!promise.error) {
-        await queryClient.invalidateQueries({ queryKey: ["videos"] });
-        closeModal();
-      }
-      else {
-          notify("Video Added Succesfully")
-      }
+      addVideo({ throwOnError: true })
+        .then(async () => {
+          await queryClient.refetchQueries({ queryKey: ["videos"] });
+          notify("Video Added Succesfully", "success");
+          closeModal();
+        })
+        .catch((_) => {
+          // err is passed to addVideoError
+        });
     }
   };
 

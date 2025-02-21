@@ -10,7 +10,7 @@ const useAddVideo = (url: string) => {
     queryKey: ["addVideo"],
     queryFn: () =>
       axios
-        .post("http://localhost:3005/videos", {
+        .post("/videos", {
           url,
         })
         .then((res) => res.data),

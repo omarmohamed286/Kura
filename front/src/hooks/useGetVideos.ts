@@ -6,8 +6,7 @@ import { handleApiError } from "@utils/handleApiError";
 const useGetVideos = () => {
   const { isPending, error, data } = useQuery<Video[]>({
     queryKey: ["videos"],
-    queryFn: () =>
-      axios.get("http://localhost:3005/videos").then((res) => res.data.data),
+    queryFn: () => axios.get("/videos").then((res) => res.data.data),
   });
 
   return {

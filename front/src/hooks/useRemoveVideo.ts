@@ -7,11 +7,9 @@ const useRemoveVideo = (id?: string) => {
     enabled: false,
     retry: false,
     gcTime: 0,
-    queryKey: ["removeVideo",id],
-    queryFn: () =>
-      axios
-        .delete(`http://localhost:3005/videos/5`)
-        .then((res) => res.data),
+    refetchInterval: false,
+    queryKey: ["removeVideo", id],
+    queryFn: () => axios.delete(`/videos/${id}`).then((res) => res.data),
   });
 
   return {

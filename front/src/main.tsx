@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import "@mantine/core/styles.css";
 import "./global.css";
+import "./utils/axios-global"
 
 import AppRouter from "./router/AppRouter";
 

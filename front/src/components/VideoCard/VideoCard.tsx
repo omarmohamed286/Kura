@@ -2,6 +2,9 @@ import useRemoveVideo from "@hooks/useRemoveVideo";
 import { useQueryClient } from "@tanstack/react-query";
 import { Video } from "src/types";
 
+import notify from "@utils/notify";
+import { handleApiError } from "@utils/handleApiError";
+
 import styles from "./styles.module.css";
 import { Button } from "@mantine/core";
 const { videoCard, videoTitle, wrapper } = styles;
@@ -11,16 +14,14 @@ type VideoCardProps = {
 };
 
 const VideoCard = ({ video }: VideoCardProps) => {
-  const { isRemovingVideo, removeVideoError, removeVideo } = useRemoveVideo(
-    video._id
-  );
+  const { isRemovingVideo, removeVideo } = useRemoveVideo(video._id);
+
   const queryClient = useQueryClient();
 
-  const handleRemoveVideo = async () => {
-    const promise = await removeVideo();
-    if (!promise.error) {
-      queryClient.invalidateQueries({ queryKey: ["videos"] });
-    }
+  const handleRemoveVideo = () => {
+    removeVideo({ throwOnError: true })
+      .then(() => queryClient.refetchQueries({ queryKey: ["videos"] }))
+      .catch((err) => notify(handleApiError(err), "error"));
   };
 
   return (
