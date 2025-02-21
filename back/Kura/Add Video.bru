@@ -1,0 +1,17 @@
+meta {
+  name: Add Video
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3005/videos
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "url":"https://www.youtube.com/watch?v=2sdXSczmvNc&t=36s&pp=ygUQYWJvcnQgY29udHJvbGxlcg%3D%3D"
+  }
+}

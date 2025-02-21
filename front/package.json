@@ -12,7 +12,6 @@
   "dependencies": {
     "@mantine/core": "^7.16.3",
     "@mantine/hooks": "^7.16.3",
-    "@mantine/modals": "^7.16.3",
     "@tanstack/query-sync-storage-persister": "^5.66.4",
     "@tanstack/react-query": "^5.66.5",
     "@tanstack/react-query-persist-client": "^5.66.7",
@@ -20,7 +19,7 @@
     "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "virtua": "^0.40.0",
+    "react-hot-toast": "^2.5.2",
     "wouter": "^3.6.0"
   },
   "devDependencies": {
@@ -32,7 +31,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
-    "postcss": "^8.5.2",
+    "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "typescript": "~5.7.2",

@@ -5,6 +5,7 @@
   text-align: center;
   display: grid;
   place-content: center;
+  margin-inline: 1rem;
 }
 
 .mainHeading {
@@ -23,4 +24,10 @@ header p span {
   display: flex;
   justify-content: space-between;
   gap: 4rem;
+}
+
+@media (max-width:500px) {
+  .pagesSection {
+    flex-direction: column;
+  }
 }

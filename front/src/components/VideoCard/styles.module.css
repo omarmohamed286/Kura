@@ -1,29 +1,48 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-inline: 1rem;
+}
+
 .videoCard {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  flex-basis: 100%;
   gap: 0.5rem;
-  margin-top: 2rem;
-  margin: 1rem 2rem;
   padding: 0.5rem;
-  width: 50rem;
+  max-width: 100%;
   background-color: rgb(250, 247, 247);
   border-radius: 5px;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
 }
 
 .videoCard img {
-  max-width: 15rem;
+  max-width: 20rem;
 }
 
 .videoCard div {
-  flex-basis: 50%;
   text-align: center;
+  flex-basis: 100%;
 }
 
+@media (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .videoCard {
+    width: 100%;
+  }
+}
 
-@media (max-width:500px) {
+@media (max-width: 700px) {
   .videoCard {
     flex-direction: column;
+  }
+  .videoCard img {
+    width: 100%;
   }
 }

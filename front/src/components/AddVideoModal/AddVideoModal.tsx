@@ -1,8 +1,9 @@
 import { Button, TextInput } from "@mantine/core";
+import isYoutubeUrl from "@validations/isYoutubeUrl";
+import notify from "@utils/notify";
 import useGetVideoInfo from "@hooks/useGetVideoInfo";
 import useAddVideo from "@hooks/useAddVideo";
 import { useState } from "react";
-import isYoutubeUrl from "@validations/isYoutubeUrl";
 import { useQueryClient } from "@tanstack/react-query";
 
 type AddVideoModalProps = {
@@ -43,6 +44,9 @@ const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
       if (!promise.error) {
         await queryClient.invalidateQueries({ queryKey: ["videos"] });
         closeModal();
+      }
+      else {
+          notify("Video Added Succesfully")
       }
     }
   };

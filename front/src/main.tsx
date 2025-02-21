@@ -11,9 +11,9 @@ import AppRouter from "./router/AppRouter";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
-  <MantineProvider>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <MantineProvider>
       <AppRouter></AppRouter>
-    </QueryClientProvider>
-  </MantineProvider>
+    </MantineProvider>
+  </QueryClientProvider>
 );

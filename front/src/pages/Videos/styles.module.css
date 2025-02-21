@@ -1,13 +1,19 @@
+.videosContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 60rem));
+  justify-content: center;
+}
+
 .addVideoButton {
   position: fixed;
   bottom: 50px;
   right: 50px;
+  padding: 1rem 2rem;
   border: 2px solid var(--main-clr);
   color: var(--main-clr);
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 2rem;
   cursor: pointer;
-  padding: 1rem 1.5rem;
   animation: downToTop 1s ease-in-out;
 }
 
@@ -17,5 +23,11 @@
   }
   to {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1000px) {
+  .addVideoButton {
+    padding: 0.5rem 1rem;
   }
 }

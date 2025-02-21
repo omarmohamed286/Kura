@@ -1,5 +1,4 @@
 import { TextInput, Center, Loader } from "@mantine/core";
-import { VList } from "virtua";
 
 import { ModalComponent, VideoCard } from "@components/index";
 import { AddVideoModal } from "@components/index";
@@ -8,7 +7,7 @@ import { useDisclosure } from "@mantine/hooks";
 import useGetVideos from "@hooks/useGetVideos";
 
 import styles from "./styles.module.css";
-const { addVideoButton } = styles;
+const { addVideoButton, videosContainer } = styles;
 
 const Videos = () => {
   const { isGettingVideos, videos, error } = useGetVideos();
@@ -22,21 +21,13 @@ const Videos = () => {
         </Center>
       );
     } else if (videos && videos.length > 0) {
-      return (
-        <>
-          {
-            <VList style={{ height: 700 }}>
-              {videos.reverse().map((video) => {
-                return (
-                  <Center key={video._id}>
-                    <VideoCard video={video} />
-                  </Center>
-                );
-              })}
-            </VList>
-          }
-        </>
-      );
+      return [...videos].reverse().map((video) => {
+        return (
+          <div className={videosContainer}>
+            <VideoCard video={video} />
+          </div>
+        );
+      });
     } else if (error) {
       return (
         <Center h={600}>
@@ -52,7 +43,7 @@ const Videos = () => {
   };
 
   return (
-    <div>
+    <div style={{marginInline:"1rem"}}>
       <button className={addVideoButton} onClick={open}>
         +
       </button>
