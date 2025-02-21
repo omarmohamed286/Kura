@@ -3,7 +3,7 @@ import axios from "axios";
 import { handleApiError } from "@utils/handleApiError";
 
 const useAddVideo = (url: string) => {
-  const { error, refetch, fetchStatus } = useQuery({
+  const { error, refetch, isFetching } = useQuery({
     enabled: false,
     retry: false,
     gcTime: 0,
@@ -17,7 +17,7 @@ const useAddVideo = (url: string) => {
   });
 
   return {
-    isAddingVideo: fetchStatus == "fetching",
+    isAddingVideo: isFetching,
     addVideoError: error ? handleApiError(error) : null,
     addVideo: refetch,
   };

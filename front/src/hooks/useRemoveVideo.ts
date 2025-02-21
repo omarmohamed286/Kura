@@ -3,7 +3,7 @@ import axios from "axios";
 import { handleApiError } from "@utils/handleApiError";
 
 const useRemoveVideo = (id?: string) => {
-  const { error, refetch, fetchStatus } = useQuery({
+  const { error, refetch, isFetching } = useQuery({
     enabled: false,
     retry: false,
     gcTime: 0,
@@ -13,7 +13,7 @@ const useRemoveVideo = (id?: string) => {
   });
 
   return {
-    isRemovingVideo: fetchStatus == "fetching",
+    isRemovingVideo: isFetching,
     removeVideoError: error ? handleApiError(error) : null,
     removeVideo: refetch,
   };

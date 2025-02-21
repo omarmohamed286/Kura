@@ -3,16 +3,19 @@ import axios from "axios";
 import { Video } from "../types";
 import { handleApiError } from "@utils/handleApiError";
 
-const useGetVideos = () => {
-  const { isPending, error, data } = useQuery<Video[]>({
-    queryKey: ["videos"],
-    queryFn: () => axios.get("/videos").then((res) => res.data.data),
+const useGetVideos = (keyword: string) => {
+  const { isPending, error, data, refetch, isFetching } = useQuery<Video[]>({
+    queryKey: ["videos", keyword],
+    queryFn: () =>
+      axios.get(`/videos?keyword=${keyword}`).then((res) => res.data.data),
   });
 
   return {
     isGettingVideos: isPending,
+    isSearchingVideos: isFetching,
     error: error ? handleApiError(error) : null,
     videos: data,
+    refetchVideos: refetch,
   };
 };
 
