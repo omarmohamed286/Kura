@@ -1,0 +1,17 @@
+meta {
+  name: Add Blog
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3005/blogs
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "url":"https://overreacted.io/the-wet-codebase/"
+  }
+}

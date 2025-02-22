@@ -7,4 +7,11 @@ type Video = {
   channelName: string;
 };
 
-export { type Video };
+type Blog = {
+  _id?: string;
+  url?: string;
+  title: string;
+  description: string;
+};
+
+export { type Video, type Blog };

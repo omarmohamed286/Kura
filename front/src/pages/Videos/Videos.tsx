@@ -3,9 +3,10 @@ import { Toaster } from "react-hot-toast";
 
 import { ModalComponent, VideoCard } from "@components/index";
 import { AddVideoModal } from "@components/index";
+import { Video } from "@customTypes/index";
 
 import { useDisclosure } from "@mantine/hooks";
-import useGetVideos from "@hooks/useGetVideos";
+import useGetDocuments from "@hooks/useGetDocuments";
 
 import styles from "./styles.module.css";
 import { useState } from "react";
@@ -14,11 +15,16 @@ const { addVideoButton, videosContainer } = styles;
 const Videos = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [opened, { open, close }] = useDisclosure(false);
-  const { isGettingVideos, videos, error, refetchVideos, isSearchingVideos } =
-    useGetVideos(searchKeyword);
+  const {
+    error,
+    isFetching,
+    isPending,
+    data: videos,
+    refetch,
+  } = useGetDocuments<Video>("videos", searchKeyword);
 
   const handleGetVideos = () => {
-    if (isGettingVideos || (isSearchingVideos && searchKeyword)) {
+    if (isPending || (isFetching && searchKeyword)) {
       return (
         <Center h={600}>
           <Loader color="cyan"></Loader>
@@ -48,7 +54,7 @@ const Videos = () => {
 
   const handleOnSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
-    refetchVideos();
+    refetch();
   };
 
   return (

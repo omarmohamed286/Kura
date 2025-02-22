@@ -1,0 +1,17 @@
+meta {
+  name: Get Blog Info
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3005/blogs/info
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "url":"https://overreacted.io/goodbye-clean-code/"
+  }
+}

@@ -2,25 +2,25 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { handleApiError } from "@utils/handleApiError";
 
-const useAddVideo = (url: string) => {
+const useAddDocument = (path: string, url: string) => {
   const { error, refetch, isFetching } = useQuery({
     enabled: false,
     retry: false,
     gcTime: 0,
-    queryKey: ["addVideo"],
+    queryKey: [`add${path}`],
     queryFn: () =>
       axios
-        .post("/videos", {
+        .post(`/${path}`, {
           url,
         })
         .then((res) => res.data),
   });
 
   return {
-    isAddingVideo: isFetching,
-    addVideoError: error ? handleApiError(error) : null,
-    addVideo: refetch,
+    isFetching,
+    error: error ? handleApiError(error) : null,
+    refetch,
   };
 };
 
-export default useAddVideo;
+export default useAddDocument;

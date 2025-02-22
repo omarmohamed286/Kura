@@ -1,6 +1,6 @@
-import useRemoveVideo from "@hooks/useRemoveVideo";
+import useRemoveDocument from "@hooks/useRemoveDocument";
 import { useQueryClient } from "@tanstack/react-query";
-import { Video } from "src/types";
+import { Video } from "src/customTypes";
 
 import notify from "@utils/notify";
 import { handleApiError } from "@utils/handleApiError";
@@ -14,12 +14,13 @@ type VideoCardProps = {
 };
 
 const VideoCard = ({ video }: VideoCardProps) => {
-  const { isRemovingVideo, removeVideo } = useRemoveVideo(video._id);
+
+  const { isFetching, refetch } = useRemoveDocument("videos", video._id);
 
   const queryClient = useQueryClient();
 
   const handleRemoveVideo = () => {
-    removeVideo({ throwOnError: true })
+    refetch({ throwOnError: true })
       .then(() => queryClient.refetchQueries({ queryKey: ["videos"] }))
       .catch((err) => notify(handleApiError(err), "error"));
   };
@@ -39,7 +40,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
       <div>
         <Button
           color="red"
-          loading={isRemovingVideo ? true : false}
+          loading={isFetching ? true : false}
           loaderProps={{ type: "dots" }}
           onClick={handleRemoveVideo}
         >

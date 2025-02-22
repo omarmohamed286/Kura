@@ -1,0 +1,15 @@
+meta {
+  name: Search Blogs
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:3005/blogs?keyword=memo
+  body: none
+  auth: none
+}
+
+params:query {
+  keyword: memo
+}

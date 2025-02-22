@@ -2,8 +2,9 @@ import { Button, TextInput } from "@mantine/core";
 
 import isYoutubeUrl from "@validations/isYoutubeUrl";
 import notify from "@utils/notify";
-import useGetVideoInfo from "@hooks/useGetVideoInfo";
-import useAddVideo from "@hooks/useAddVideo";
+import useGetInfo from "@hooks/useGetInfo";
+import useAddDocument from "@hooks/useAddDocument";
+import { Video } from "@customTypes/index";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -14,8 +15,17 @@ type AddVideoModalProps = {
 const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
   const [isUrlError, setIsUrlError] = useState(false);
   const [url, setUrl] = useState("");
-  const { getVideoError, videoInfo, getVideoInfo } = useGetVideoInfo(url);
-  const { addVideoError, isAddingVideo, addVideo } = useAddVideo(url);
+  const {
+    error: addVideoError,
+    isFetching: isAddingVideo,
+    refetch: addVideo,
+  } = useAddDocument("videos", url);
+
+  const {
+    error: getVideoInfoError,
+    data: videoInfo,
+    refetch: getVideoInfo,
+  } = useGetInfo<Video>("videos", url);
 
   const queryClient = useQueryClient();
 
@@ -34,8 +44,8 @@ const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
           <p>{videoInfo.channelName}</p>
         </>
       );
-    } else if (getVideoError) {
-      return <p>{getVideoError}</p>;
+    } else if (getVideoInfoError) {
+      return <p>{getVideoInfoError}</p>;
     }
     return null;
   };
