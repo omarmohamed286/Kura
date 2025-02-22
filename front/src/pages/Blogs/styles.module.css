@@ -1,10 +1,11 @@
-.videosContainer {
+.blogsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 60rem));
-  justify-content: center;
+  justify-content: center; 
 }
 
-.addVideoButton {
+
+.addBlogButton {
   position: fixed;
   bottom: 50px;
   right: 50px;
@@ -16,19 +17,4 @@
   cursor: pointer;
   animation: downToTop 1s ease-in-out;
   z-index: 1;
-}
-
-@keyframes downToTop {
-  from {
-    transform: translateY(130px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 1000px) {
-  .addVideoButton {
-    padding: 0.5rem 1rem;
-  }
 }

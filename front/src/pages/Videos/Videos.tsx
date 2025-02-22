@@ -72,7 +72,7 @@ const Videos = () => {
         ></TextInput>
       </Center>
       {handleGetVideos()}
-      <ModalComponent opened={opened} close={close}>
+      <ModalComponent opened={opened} close={close} title="Add New Youtube Video">
         <AddVideoModal closeModal={close}></AddVideoModal>
       </ModalComponent>
       <Toaster position="top-right"></Toaster>
