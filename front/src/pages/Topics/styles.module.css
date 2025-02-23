@@ -1,0 +1,19 @@
+.topicsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 60rem));
+  justify-content: center;
+}
+
+.addTopicButton {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  padding: 1rem 2rem;
+  border: 2px solid var(--main-clr);
+  color: var(--main-clr);
+  border-radius: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+  animation: downToTop 1s ease-in-out;
+  z-index: 1;
+}

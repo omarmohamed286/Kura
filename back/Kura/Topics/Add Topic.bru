@@ -1,0 +1,17 @@
+meta {
+  name: Add Topic
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3005/topics
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title":"JSON"
+  }
+}

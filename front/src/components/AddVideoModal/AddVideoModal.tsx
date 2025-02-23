@@ -19,7 +19,7 @@ const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
     error: addVideoError,
     isFetching: isAddingVideo,
     refetch: addVideo,
-  } = useAddDocument("videos", url);
+  } = useAddDocument("videos", { url });
 
   const {
     error: getVideoInfoError,

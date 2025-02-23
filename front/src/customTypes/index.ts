@@ -14,4 +14,9 @@ type Blog = {
   description: string;
 };
 
-export { type Video, type Blog };
+type Topic = {
+  _id?: string;
+  title: string;
+};
+
+export { type Video, type Blog, type Topic };

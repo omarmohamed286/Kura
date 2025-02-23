@@ -2,8 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const dbConnection = require("./config/db.js");
+
+
 const videoRoute = require("./routes/videoRoute.js");
 const blogRoute = require("./routes/blogRoute.js")
+const topicRoute = require("./routes/topicRoute.js")
 
 dbConnection();
 
@@ -15,6 +18,7 @@ const PORT = 3005;
 
 app.use("/videos", videoRoute);
 app.use("/blogs", blogRoute);
+app.use("/topics", topicRoute);
 
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);

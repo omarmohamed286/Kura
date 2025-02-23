@@ -19,7 +19,7 @@ const AddBlogModal = ({ closeModal }: AddBlogModalProps) => {
     error: addBlogError,
     isFetching: isAddingBlog,
     refetch: addBlog,
-  } = useAddDocument("blogs", url);
+  } = useAddDocument("blogs", { url });
 
   const {
     error: getBlogInfoError,
