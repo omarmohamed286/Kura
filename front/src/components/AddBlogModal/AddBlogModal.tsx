@@ -68,7 +68,7 @@ const AddBlogModal = ({ closeModal }: AddBlogModalProps) => {
             setIsUrlError(false);
             setUrl("");
           } else if (isUrl(e.target.value)) {
-            setUrl(e.target.value);
+            setUrl(e.target.value.trim());
             setIsUrlError(false);
             getBlogInfo();
           } else {

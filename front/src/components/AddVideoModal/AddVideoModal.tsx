@@ -72,8 +72,8 @@ const AddVideoModal = ({ closeModal }: AddVideoModalProps) => {
           if (!e.target.value) {
             setIsUrlError(false);
             setUrl("");
-          } else if (isYoutubeUrl(e.target.value)) {
-            setUrl(e.target.value);
+          } else if (isYoutubeUrl(e.target.value.trim())) {
+            setUrl(e.target.value.trim());
             setIsUrlError(false);
             getVideoInfo();
           } else {

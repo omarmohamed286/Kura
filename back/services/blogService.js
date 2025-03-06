@@ -33,29 +33,11 @@ exports.deleteBlog = asyncHandler(async (req, res) => {
 });
 
 exports.getBlogs = asyncHandler(async (req, res) => {
-  const documentsCount = await blogModel.countDocuments();
-  const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 10;
-  const skip = (page - 1) * limit;
-  const lastIndex = page * limit;
-  const pagination = {};
-  pagination.currentPage = page;
-  pagination.limit = limit;
-  pagination.totalPages = Math.ceil(documentsCount / limit);
-
-  if (lastIndex < documentsCount) {
-    pagination.next = page + 1;
-  }
-  if (skip > 0) {
-    pagination.prev = page - 1;
-  }
   const { keyword } = req.query;
   let query = {};
   if (keyword) {
     query = { title: { $regex: keyword.trim(), $options: "i" } };
   }
-
-  const blogs = await blogModel.find(query).skip(skip).limit(limit);
-
-  res.status(200).json({ data: blogs, pagination });
+  const blogs = await blogModel.find(query);
+  res.status(200).json({ data: blogs });
 });
